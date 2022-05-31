@@ -80,7 +80,13 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //根據網址帶入的$id及表單資料中的name及message來更新資料
+        DB::table("messages")->where('id',$id)
+                             ->update(['user'=>$request->user,'message'=>$request->message]);
+
+        //更新完成後，將網址導向留言列表
+        return redirect('/');
+        
     }
 
     /**
