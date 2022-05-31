@@ -12,7 +12,30 @@ class MessageService
         $this->msgRepo=$msgRepo;
     }
 
+    public function all()
+    {
+        return $this->msgRepo->all();
+    }
 
+    public function insert($formdata)
+    {
+        $this->msgRepo->insert($formdata);
+    }
+
+    public function find($id)
+    {
+        return $this->msgRepo->find($id);
+    }
+
+    public function update($id,$formdata)
+    {
+        $this->msgRepo->update($id,$formdata);
+    }
+
+    public function destroy($id)
+    {
+        $this->msgRepo->destroy($id);
+    }
 }
 
 

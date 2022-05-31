@@ -38,6 +38,9 @@
 </head>
 <body>
     <h1>新增留言</h1>
+    @isset($error)
+       <h3 class="center" style="color:red">{{$error}}</h3>
+    @endisset
     <form action="/message" method="post" class="wrap">
         @csrf
         <label class="user" for="">
