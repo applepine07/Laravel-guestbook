@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Message;
 class MessageController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class MessageController extends Controller
     public function index()
     {
         //取出指定的資料表中的所有的資料
-        $messages=DB::table('messages')->get();
+        $messages=Message::all();
 
         //將資料以變數名稱messages回傳給blade去使用
         return view('list_message',["messages"=>$messages]);
@@ -39,7 +39,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //使用DB類別直接將表單傳來的資料新增進資料表
-        DB::table('messages')->insert(['user'=>$request->user,'message'=>$request->message]);
+        Message::insert(['user'=>$request->user,'message'=>$request->message]);
 
         //新增完畢後將網址導回首頁
         return redirect("/");
@@ -65,7 +65,7 @@ class MessageController extends Controller
     public function edit($id)
     {
         //根據網址傳來的id變數來取出留言資料
-        $message=DB::table('messages')->find($id);
+        $message=Message::find($id);
 
         //顯示編輯資料用的頁面並帶入留言資料
         return view('edit_message',["message"=>$message]);
@@ -81,8 +81,10 @@ class MessageController extends Controller
     public function update(Request $request, $id)
     {
         //根據網址帶入的$id及表單資料中的name及message來更新資料
-        DB::table("messages")->where('id',$id)
-                             ->update(['user'=>$request->user,'message'=>$request->message]);
+        $message=Message::find($id);
+        $message->user=$request->user;
+        $message->message=$request->message;
+        $message->save();
 
         //更新完成後，將網址導向留言列表
         return redirect('/');
@@ -98,8 +100,7 @@ class MessageController extends Controller
     public function destroy($id)
     {
         //依據網址傳來的id值來進行刪除
-        DB::table('messages')->where('id',$id)
-                             ->delete();
+        Message::destroy($id);
 
         //刪除完成後將網址導向留言列表
         return redirect('/');
