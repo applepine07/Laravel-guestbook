@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\MessageController::class,'index']);  //首頁用來顯示所有的資料
-Route::get('/message', [\App\Http\Controllers\MessageController::class,'show']);  //顯示新增留言的表單
+Route::get('/message', [\App\Http\Controllers\MessageController::class,'create']);  //顯示新增留言的表單
 Route::post('/message', [\App\Http\Controllers\MessageController::class,'store']);  //儲存新留言進資料表
 Route::get('/message/{id}', [\App\Http\Controllers\MessageController::class,'edit']);  //顯示編輯指定留言的表單
 Route::patch('/message/{id}', [\App\Http\Controllers\MessageController::class,'update']);  //更新編輯過的留言進資料表
