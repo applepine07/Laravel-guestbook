@@ -4,8 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+
+use App\Services\MessageService;
+
 class MessageController extends Controller
 {
+
+    private $msgService;
+
+    public function __construct(MessageService $msgService)
+    {
+        $this->msgService=$msgService;
+    }
+
     /**
      * 顯示訊息列表
      *
