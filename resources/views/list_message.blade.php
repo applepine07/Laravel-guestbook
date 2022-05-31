@@ -31,13 +31,21 @@
             padding:0.5rem;
             font-size:1rem;
         }
-        
+
+        hr{
+            margin:1rem auto;
+        }
+        body{
+            width:65%;
+            margin:auto;
+            padding:1rem
+        }
     </style>
 </head>
 <body>
     <h1>留言板</h1>
-    <button>我要留言</button>
+    <button onclick="location.href='/message'">我要留言</button>
     <hr>
-    
+
 </body>
 </html>

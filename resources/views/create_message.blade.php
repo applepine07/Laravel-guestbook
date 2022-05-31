@@ -38,7 +38,8 @@
 </head>
 <body>
     <h1>新增留言</h1>
-    <form action="" method="post" class="wrap">
+    <form action="/message" method="post" class="wrap">
+        @csrf
         <label class="user" for="">
             留言者
             <input type="text" name="user">
