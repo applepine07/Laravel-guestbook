@@ -45,6 +45,10 @@
         .right{
             text-align: right;
         }
+        .flex{
+            display:flex;
+            justify-content: end;
+        }
     </style>
 </head>
 <body>
@@ -62,8 +66,15 @@
                 <span class="label">留言內容：</span>
                 <div>{!! nl2br($message->message) !!}</div>
             </div>
-            <div class="right">
+            <div class="right flex">
                 <button onclick="location.href='/message/{{$message->id}}'">編輯留言</button>
+                <form action="/message/{{$message->id}}" method="post">
+                    <!--使用laravel提供的方法欺騙來偽裝一個delete的請求-->
+                    @method('delete')
+                    @csrf
+                    <input type="submit" value="刪除留言">
+                </form>
+                
             </div>
         </div>
 

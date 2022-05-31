@@ -97,6 +97,11 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //依據網址傳來的id值來進行刪除
+        DB::table('messages')->where('id',$id)
+                             ->delete();
+
+        //刪除完成後將網址導向留言列表
+        return redirect('/');
     }
 }
