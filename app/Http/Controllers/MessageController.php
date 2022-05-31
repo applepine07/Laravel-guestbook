@@ -13,7 +13,11 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('list_message');
+        //取出指定的資料表中的所有的資料
+        $messages=DB::table('messages')->get();
+
+        //將資料以變數名稱messages回傳給blade去使用
+        return view('list_message',["messages"=>$messages]);
     }
 
     /**
@@ -34,7 +38,6 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-
         //使用DB類別直接將表單傳來的資料新增進資料表
         DB::table('messages')->insert(['user'=>$request->user,'message'=>$request->message]);
 

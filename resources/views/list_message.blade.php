@@ -27,11 +27,13 @@
             font-size: 1.25rem;
             display:block;
         }
-        .user input,.message textarea{
+        .user .label,.message .label{
             padding:0.5rem;
-            font-size:1rem;
+            font-size:0.9rem;
         }
-
+        .message div{
+            margin:0.2rem 0.4rem;
+        }
         hr{
             margin:1rem auto;
         }
@@ -46,6 +48,19 @@
     <h1>留言板</h1>
     <button onclick="location.href='/message'">我要留言</button>
     <hr>
+    @foreach($messages as $message)
 
+        <div class="wrap">
+            <div class="user">
+                <span class="label">留言者：</span>
+                <span>{{ $message->user }}</span>
+            </div>
+            <div class="message">
+                <span class="label">留言內容：</span>
+                <div>{!! nl2br($message->message) !!}</div>
+            </div>
+        </div>
+
+    @endforeach
 </body>
 </html>
