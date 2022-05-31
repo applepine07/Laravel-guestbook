@@ -39,14 +39,17 @@
 </head>
 <body>
     <h1>編輯留言</h1>
-    <form action="" method="post" class="wrap">
+    <form action="/message/{{$message->id}}" method="post" class="wrap">
+        <!--使用laravel提供的方法欺騙來偽裝要使用patch方法來更新資料-->
+        @method("patch")
+        @csrf
         <label class="user" for="">
             留言者
-            <input type="text" name="user">
+            <input type="text" name="user" value="{{$message->user}}">
         </label>
         <label class="message" for="">
             訊息內容
-            <textarea name="message" style="width:100%;height:10rem;"></textarea>
+            <textarea name="message" style="width:100%;height:10rem;">{{$message->message}}</textarea>
         </label>
         <div class="center">
             <input type="submit" value="編輯">

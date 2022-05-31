@@ -42,6 +42,9 @@
             margin:auto;
             padding:1rem
         }
+        .right{
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -58,6 +61,9 @@
             <div class="message">
                 <span class="label">留言內容：</span>
                 <div>{!! nl2br($message->message) !!}</div>
+            </div>
+            <div class="right">
+                <button onclick="location.href='/message/{{$message->id}}'">編輯留言</button>
             </div>
         </div>
 

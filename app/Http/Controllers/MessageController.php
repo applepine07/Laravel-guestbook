@@ -64,7 +64,11 @@ class MessageController extends Controller
      */
     public function edit($id)
     {
-        //
+        //根據網址傳來的id變數來取出留言資料
+        $message=DB::table('messages')->find($id);
+
+        //顯示編輯資料用的頁面並帶入留言資料
+        return view('edit_message',["message"=>$message]);
     }
 
     /**
